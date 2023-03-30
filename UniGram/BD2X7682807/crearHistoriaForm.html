@@ -1,0 +1,25 @@
+<html>
+    <!--FORM SIMPLE DONDE SE INTRODUCEN LOS DATOS PARA CREAR UNA HISTORIA-->
+    <head>
+        <title>Crea tu historia</title>
+        <link rel="stylesheet" type="text/css" href="createStorystyle.css">
+    </head>
+    <body>
+        <div class = "storyformbox">
+            <div class="center">
+                <h1>Crea tu historia</h1>
+                <form method="post" action="insertHistoria.php">
+
+                    <label>Selecciona la privacidad de tu historia</label>
+                    <select name="priv">
+                        <option value="0">Publica</option>
+                        <option value="1">Privada</option>
+                    </select>
+
+                    <label>Descripcion</label>
+                    <textarea name="desc" required_maxlength="255" placeholder="Inserta una descripcion"></textarea>
+                    <input type="submit" value="Crear">
+                </form>
+            </div>
+    </body>
+</html>

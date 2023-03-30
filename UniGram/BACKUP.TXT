@@ -1,0 +1,23 @@
+DELIMITER //
+CREATE PROCEDURE backUp()
+
+	BEGIN 
+		TRUNCATE TABLE historia_backup;
+    	TRUNCATE TABLE mensaje_backup;
+   		TRUNCATE TABLE publicacion_backup;
+        TRUNCATE TABLE respuesta_backup;
+        TRUNCATE TABLE r_follower_backup;
+        TRUNCATE TABLE usuario_backup;
+    
+    	INSERT into historia_backup SELECT * FROM historia;
+   		INSERT into mensaje_backup SELECT * FROM mensaje;
+    	INSERT into publicacion_backup SELECT * FROM publicacion;
+        INSERT into respuesta_backup SELECT * FROM respuesta;
+        INSERT into r_follower_backup SELECT * FROM r_follower;
+        INSERT into usuario_backup SELECT * FROM usuario;
+	END;
+
+DELIMITER //
+CREATE EVENT crear_backup
+ON SCHEDULE every 24 hour STARTS CURRENT_TIMESTAMP
+DO EXECUTE backUp;

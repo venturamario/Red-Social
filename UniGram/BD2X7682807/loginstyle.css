@@ -1,0 +1,93 @@
+* {
+    padding: 0;
+    margin: 0;
+    color: #1a1f36;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
+  }
+
+body{
+    background-image: linear-gradient(rgba(37, 33, 33, 0.75),rgb(86, 106, 219)), url(loginbg.jpg);
+    background-repeat: no-repeat;
+    background-size: 775px 750px;
+}
+
+.registerbox{
+    text-decoration: none;
+    color:#0E0E52;
+    font-weight: bold;
+}
+
+.loginbox{
+    width: 600px;
+    height: 450px;
+    float: right;
+    position: relative;
+    align-items: center;
+    box-shadow: 0 0 10px grey;
+    margin-right: 55px;
+    margin-top: 45px;
+}
+
+.center{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50% );
+}
+
+.roundborder{
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.logo{
+    background-image: url(loginlogo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100px;
+    width: 500px;
+    object-fit: scale-down;
+    display: block;
+    margin-left: auto;
+    margin-right: 180px;
+    margin-top: 30px;
+}
+
+hr.round{
+    border-top: 8px solid #0E0E52;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+}
+
+input[type=submit]{
+    appearance: none;
+    font-weight: bold;
+    padding: 10px;
+    margin-bottom: 30px;
+    background-color: #0E0E52;
+    border-radius: 10px;
+    border: none;
+    color:white;
+    width: 100%;
+}
+
+input[type=text]{
+    width: 300px;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+input[type=password]{
+    width: 300px;
+    padding: 5px;
+    margin: 10px 0;
+}

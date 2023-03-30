@@ -1,0 +1,65 @@
+DELIMITER //
+
+CREATE trigger borrarPublicacion
+BEFORE DELETE on publicacion FOR EACH ROW
+BEGIN
+DECLARE acabar INT DEFAULT FALSE;
+DECLARE resp_aux int;
+
+DECLARE varcursor CURSOR for SELECT idRespuesta from respuesta where idPublicacion = OLD.idPublicacion;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET acabar=TRUE;
+OPEN varcursor;
+etq: LOOP
+	FETCH varcursor into resp_aux;
+	if acabar then 
+    	leave etq;
+     end IF;
+    DELETE FROM respuesta WHERE idRespuesta=resp_aux;
+end loop;
+CLOSE varcursor;
+
+END;
+
+DELIMITER //
+
+CREATE trigger borrarHistoria
+BEFORE DELETE on historia FOR EACH ROW
+BEGIN
+DECLARE acabar INT DEFAULT FALSE;
+DECLARE pub_aux int;
+
+DECLARE varcursor CURSOR for SELECT idPublicacion from publicacion where idHistoria = OLD.idHistoria;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET acabar=TRUE;
+OPEN varcursor;
+etq: LOOP
+	FETCH varcursor into pub_aux;
+	if acabar then 
+    	leave etq;
+     end IF;
+    DELETE FROM publicacion WHERE idPublicacion=pub_aux;
+end loop;
+CLOSE varcursor;
+
+END;
+
+DELIMITER //
+
+CREATE TRIGGER notificahistoria
+AFTER INSERT on historia FOR EACH ROW
+BEGIN
+DECLARE acabar INT DEFAULT FALSE;
+DECLARE a char(20);
+
+DECLARE varcursor CURSOR FOR SELECT nombreUsuario1 FROM r_follower WHERE nombreUsuario2 = NEW.nombreUsuario;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET acabar=TRUE;
+OPEN varcursor;
+etq: LOOP
+	FETCH varcursor INTO a;
+	IF acabar THEN
+	LEAVE etq;
+        END IF;
+        INSERT INTO mensaje VALUES(null,concat('Mira mi nueva historia: http://localhost/bd203/BD2X7682807/verHistoria.php?id=',NEW.idHistoria),0,NEW.nombreUsuario,a);
+END LOOP;
+CLOSE varcursor;
+
+END;
