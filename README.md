@@ -1,6 +1,6 @@
-# Red-Social
+# Social-Network
 
-design & development of a social media app
+Design & development of a social media app
 
 Diseño y desarrollo de una hipotética red social para una universidad
 
